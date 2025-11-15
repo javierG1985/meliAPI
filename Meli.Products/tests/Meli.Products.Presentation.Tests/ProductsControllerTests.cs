@@ -65,6 +65,19 @@ namespace Meli.Products.Presentation.Tests
         }
 
         [Fact]
+        public async Task GetById_NotFound_ReturnsNotFound()
+        {
+            var repoMock = new Mock<IProductRepository>();
+            repoMock.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((Product?)null);
+
+            var controller = CreateControllerForErrorTests(repoMock);
+
+            var result = await controller.Get(999);
+            var notFound = Assert.IsType<NotFoundResult>(result.Result);
+            Assert.NotNull(notFound);
+        }
+
+        [Fact]
         public async Task GetById_WhenRepositoryThrows_Returns500()
         {
             var repoMock = new Mock<IProductRepository>();
@@ -112,6 +125,21 @@ namespace Meli.Products.Presentation.Tests
         }
 
         [Fact]
+        public async Task Put_NotFound_ReturnsNotFound()
+        {
+            var repoMock = new Mock<IProductRepository>();
+            // Simular que el producto no existe
+            repoMock.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((Product?)null);
+
+            var controller = CreateControllerForErrorTests(repoMock);
+            var dto = new ProductDto { Id = 999, Name = "Test" };
+
+            var result = await controller.Put(999, dto);
+            var notFound = Assert.IsType<NotFoundResult>(result);
+            Assert.NotNull(notFound);
+        }
+
+        [Fact]
         public async Task Delete_WhenRepositoryThrows_Returns500()
         {
             var repoMock = new Mock<IProductRepository>();
@@ -124,6 +152,18 @@ namespace Meli.Products.Presentation.Tests
             var objectResult = Assert.IsType<ObjectResult>(result);
             Assert.Equal(StatusCodes.Status500InternalServerError, objectResult.StatusCode);
             Assert.Equal("Error deleting data", objectResult.Value);
+        }
+
+        [Fact]
+        public async Task Delete_NotFound_ReturnsNotFound()
+        {
+            var repoMock = new Mock<IProductRepository>();
+            // Simular que el producto no existe
+            repoMock.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((Product?)null);
+            var controller = CreateControllerForErrorTests(repoMock);
+            var result = await controller.Delete(1);
+            var notFound = Assert.IsType<NotFoundResult>(result);
+            Assert.NotNull(notFound);
         }
     }
 }

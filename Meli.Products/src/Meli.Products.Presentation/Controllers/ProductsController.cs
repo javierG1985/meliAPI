@@ -40,6 +40,8 @@ namespace Meli.Products.Presentation.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<ProductDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<ProductDto>>> Get()
         {
             try
@@ -57,6 +59,9 @@ namespace Meli.Products.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ProductDto>> Get(int id)
         {
             try
@@ -76,6 +81,8 @@ namespace Meli.Products.Presentation.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ProductDto>> Post(ProductDto productDto)
         {
             try
@@ -92,6 +99,9 @@ namespace Meli.Products.Presentation.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, ProductDto productDto)
         {
             try
@@ -99,6 +109,12 @@ namespace Meli.Products.Presentation.Controllers
                 if (id != productDto.Id)
                 {
                     return BadRequest();
+                }
+                // Verificar existencia previa
+                var existingProduct = await _getProductByIdUseCase.ExecuteAsync(id);
+                if (existingProduct == null)
+                {
+                    return NotFound();
                 }
 
                 var product = _mapper.Map<Product>(productDto);
@@ -113,10 +129,18 @@ namespace Meli.Products.Presentation.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
+                // Verificar existencia previa
+                var existingProduct = await _getProductByIdUseCase.ExecuteAsync(id);
+                if (existingProduct == null)
+                {
+                    return NotFound();
+                }
                 await _deleteProductUseCase.ExecuteAsync(id);
                 return NoContent();
             }

@@ -55,10 +55,109 @@ public async Task<ActionResult<IEnumerable<ProductDto>>> Get()
 ## Notas técnicas
 - Se mantiene la firma de los endpoints y se añaden pruebas para escenarios de error y de éxito.
 - Los tests usan Moq para simular `IProductRepository` y AutoMapper para DTOs.
+- Pruebas adicionales añadidas:
+  - GetById not-found (retorna 404) cuando no existe el recurso.
+  - GetById éxito (retorna 200 OK con DTO).
+  - Delete éxito (retorna 204 No Content).
+
+## Visión general del proyecto (en español)
+
+Este proyecto gestiona productos mediante una API REST basada en una arquitectura en capas: Presentación, Aplicación, Dominio e Infraestructura.
+
+### Arquitectura y responsabilidades
+- Presentación: `Meli.Products.Presentation` (Controllers).
+- Aplicación: UseCases; `IProductRepository` como abstracción de acceso a datos.
+- Dominio: Entidades (p. ej., `Product`).
+- Infraestructura: Repositorio de persistencia (p. ej., `ProductRepository`).
+- Mapeo: `ProductDto` para DTOs y `ProductMappingProfile` para AutoMapper.
+- Pruebas: pruebas unitarias para errores y para flujos exitosos; pruebas de not-found para GetById, PUT y DELETE.
+
+### Endpoints RESTful de la API (resumen)
+- GET `api/Products` — lista de productos.
+- GET `api/Products/{id}` — producto por ID (NotFound si no existe).
+- POST `api/Products` — crea un nuevo producto.
+- PUT `api/Products/{id}` — actualiza un producto (verificación de existencia previa).
+- DELETE `api/Products/{id}` — elimina un producto (verificación de existencia previa).
+
+### Pruebas unitarias (en español)
+- Cobertura:
+  - Errores en cada endpoint (Get, GetById, Post, Put, Delete).
+  - Flujos exitosos (Get, GetById, Post, Put, Delete).
+  - Not-found para GetById, PUT y DELETE.
+- Herramientas: XUnit, Moq, AutoMapper.
+- Estructura de pruebas:
+  - `tests/Meli.Products.Presentation.Tests/ProductsControllerTests.cs` (errores y not-found)
+  - `tests/Meli.Products.Presentation.Tests/ProductsControllerSuccessTests.cs` (éxitos)
+
+### Cómo ejecutar las pruebas
+- Abre una terminal en la raíz del repositorio.
+- Ejecuta: `dotnet test`
+
+## Notas finales
+- La API sigue principios RESTful y utiliza un modelo por capas para facilitar el mantenimiento.
+- Si deseas, puedo ampliar la documentación con ejemplos de respuestas HTTP detalladas para cada caso.
+- Pruebas adicionales añadidas:
+  - GetById not-found (retorna 404) cuando no existe el recurso.
+  - GetById éxito (retorna 200 OK con DTO).
+  - Delete éxito (retorna 204 No Content).
+
+## Ejemplos de respuestas HTTP (RESTful)
+
+- GET api/Products — 200 OK
+  - Cuerpo de ejemplo:
+  ```json
+  [
+    {"id":1,"name":"Producto A","price":9.99,"description":"Descripcion","rating":4.5,"imageUrl":"","specifications":{}}
+  ]
+  ```
+- GET api/Products/{id} — 200 OK
+  - Cuerpo de ejemplo:
+  ```json
+  {"id":1,"name":"Producto A","price":9.99,"description":"Descripcion","rating":4.5,"imageUrl":"","specifications":{}}
+  ```
+- GET api/Products/{id} — 404 Not Found
+  - Sin cuerpo (o vacío).
+- POST api/Products — 201 Created
+  - Cuerpo de ejemplo:
+  ```json
+  {"id":2,"name":"Producto B","price":19.99,"description":"Descripcion","rating":4.0,"imageUrl":"","specifications":{}}
+  ```
+  - Encabezado Location: /api/Products/2
+- PUT api/Products/{id} — 204 No Content (caso exitoso)
+- PUT api/Products/{id} — 404 Not Found (si no existe antes de actualizar)
+- DELETE api/Products/{id} — 204 No Content (caso exitoso)
+- DELETE api/Products/{id} — 404 Not Found (si no existe)
 
 ## Estado de TODO (actualizado)
 - Add basic error handling and inline comments to `ProductsController` — COMPLETED
 - Write unit tests for error handling in `ProductsController` — COMPLETED
 - Add unit tests for successful controller flows in `ProductsController` — COMPLETED
 - Document changes in README.md for `ProductsController` and tests — COMPLETED
+ 
+### Ejemplos de peticiones HTTP con curl
+
+- GET all: 
+```bash
+curl -sS -X GET "https://localhost:5001/api/Products" -H "Accept: application/json"
+```
+- GET by id (ej. 1):
+```bash
+curl -sS -X GET "https://localhost:5001/api/Products/1" -H "Accept: application/json"
+```
+- POST (crear):
+```bash
+curl -sS -X POST "https://localhost:5001/api/Products" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Producto Nuevo","price":9.99,"description":"Descripcion","rating":4.5,"imageUrl":"","specifications":{}}'
+```
+- PUT (actualizar):
+```bash
+curl -sS -X PUT "https://localhost:5001/api/Products/1" \
+  -H "Content-Type: application/json" \
+  -d '{"id":1,"name":"Producto Actualizado","price":19.99,"description":"Descripcion actualizada","rating":4.6,"imageUrl":"","specifications":{}}'
+```
+- DELETE (eliminar) 1:
+```bash
+curl -sS -X DELETE "https://localhost:5001/api/Products/1"
+```
 
