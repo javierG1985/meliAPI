@@ -1,0 +1,40 @@
+[
+  {
+    "Id": 1,
+    "Name": "Laptop",
+    "Price": 1200,
+    "Description": "A high-performance laptop for all your needs.",
+    "Rating": 4.5,
+    "ImageUrl": "https://via.placeholder.com/150",
+    "Specifications": {
+      "CPU": "Intel Core i7",
+      "RAM": "16GB",
+      "Storage": "512GB SSD"
+    }
+  },
+  {
+    "Id": 2,
+    "Name": "Mouse",
+    "Price": 25,
+    "Description": "A comfortable and responsive mouse.",
+    "Rating": 4.7,
+    "ImageUrl": "https://via.placeholder.com/150",
+    "Specifications": {
+      "Type": "Wireless",
+      "DPI": "1600"
+    }
+  },
+  {
+    "Id": 3,
+    "Name": "teclado",
+    "Price": 100,
+    "Description": "teclado 2026",
+    "Rating": 2,
+    "ImageUrl": "https://via.placeholder.com/150",
+    "Specifications": {
+      "model": "2026",
+      "additionalProp2": "",
+      "additionalProp3": ""
+    }
+  }
+]

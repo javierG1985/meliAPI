@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Meli.Products.Application/Meli.Products.Application.csproj" />
+    <Project Path="src/Meli.Products.Domain/Meli.Products.Domain.csproj" />
+    <Project Path="src/Meli.Products.Infrastructure/Meli.Products.Infrastructure.csproj" />
+    <Project Path="src/Meli.Products.Presentation/Meli.Products.Presentation.csproj" />
+    <Project Path="src/Meli.Products.Test/Meli.Products.Test.csproj" />
+  </Folder>
+</Solution>

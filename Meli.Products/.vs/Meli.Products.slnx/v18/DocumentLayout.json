@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\javier\\entrevistaMELI\\Meli.Products\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F98DAF28-7F73-3CCB-7BF9-974E51CDCF08}|src\\Meli.Products.Presentation\\Meli.Products.Presentation.csproj|c:\\javier\\entrevistameli\\meli.products\\src\\meli.products.presentation\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F98DAF28-7F73-3CCB-7BF9-974E51CDCF08}|src\\Meli.Products.Presentation\\Meli.Products.Presentation.csproj|solutionrelative:src\\meli.products.presentation\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB34895D-451F-B659-C7A6-FA3C43B85773}|src\\Meli.Products.Infrastructure\\Meli.Products.Infrastructure.csproj|c:\\javier\\entrevistameli\\meli.products\\src\\meli.products.infrastructure\\persistence\\products.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EB34895D-451F-B659-C7A6-FA3C43B85773}|src\\Meli.Products.Infrastructure\\Meli.Products.Infrastructure.csproj|solutionrelative:src\\meli.products.infrastructure\\persistence\\products.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB34895D-451F-B659-C7A6-FA3C43B85773}|src\\Meli.Products.Infrastructure\\Meli.Products.Infrastructure.csproj|c:\\javier\\entrevistameli\\meli.products\\src\\meli.products.infrastructure\\persistence\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB34895D-451F-B659-C7A6-FA3C43B85773}|src\\Meli.Products.Infrastructure\\Meli.Products.Infrastructure.csproj|solutionrelative:src\\meli.products.infrastructure\\persistence\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4992C8E9-60FA-01B6-0482-A2683C4B3CAD}|src\\Meli.Products.Application\\Meli.Products.Application.csproj|c:\\javier\\entrevistameli\\meli.products\\src\\meli.products.application\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4992C8E9-60FA-01B6-0482-A2683C4B3CAD}|src\\Meli.Products.Application\\Meli.Products.Application.csproj|solutionrelative:src\\meli.products.application\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Presentation\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "src\\Meli.Products.Presentation\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Presentation\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "src\\Meli.Products.Presentation\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAFEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T03:52:41.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Application\\Interfaces\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "src\\Meli.Products.Application\\Interfaces\\IProductRepository.cs",
+              "ToolTip": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Application\\Interfaces\\IProductRepository.cs",
+              "RelativeToolTip": "src\\Meli.Products.Application\\Interfaces\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T03:29:07.811Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "products.json",
+              "DocumentMoniker": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Infrastructure\\Persistence\\products.json",
+              "RelativeDocumentMoniker": "src\\Meli.Products.Infrastructure\\Persistence\\products.json",
+              "ToolTip": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Infrastructure\\Persistence\\products.json",
+              "RelativeToolTip": "src\\Meli.Products.Infrastructure\\Persistence\\products.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-15T03:08:35.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Infrastructure\\Persistence\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "src\\Meli.Products.Infrastructure\\Persistence\\ProductRepository.cs",
+              "ToolTip": "C:\\javier\\entrevistaMELI\\Meli.Products\\src\\Meli.Products.Infrastructure\\Persistence\\ProductRepository.cs",
+              "RelativeToolTip": "src\\Meli.Products.Infrastructure\\Persistence\\ProductRepository.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAASwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T02:21:35.86Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

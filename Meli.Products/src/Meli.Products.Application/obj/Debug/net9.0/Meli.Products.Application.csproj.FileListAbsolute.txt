@@ -1,0 +1,15 @@
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\bin\Debug\net9.0\Meli.Products.Application.deps.json
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\bin\Debug\net9.0\Meli.Products.Application.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\bin\Debug\net9.0\Meli.Products.Application.pdb
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\bin\Debug\net9.0\Meli.Products.Domain.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\bin\Debug\net9.0\Meli.Products.Domain.pdb
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.csproj.AssemblyReference.cache
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.AssemblyInfoInputs.cache
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.AssemblyInfo.cs
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.csproj.CoreCompileInputs.cache
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Pro.9D5EB754.Up2Date
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\refint\Meli.Products.Application.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\Meli.Products.Application.pdb
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Application\obj\Debug\net9.0\ref\Meli.Products.Application.dll

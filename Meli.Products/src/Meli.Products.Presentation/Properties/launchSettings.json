@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Meli.Products.Presentation": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64014;http://localhost:64015"
+    }
+  }
+}
