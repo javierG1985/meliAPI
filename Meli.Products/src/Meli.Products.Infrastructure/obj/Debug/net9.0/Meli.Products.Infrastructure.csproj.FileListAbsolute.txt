@@ -15,3 +15,4 @@ C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Infrastructure\obj\Debu
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Infrastructure\obj\Debug\net9.0\refint\Meli.Products.Infrastructure.dll
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Infrastructure\obj\Debug\net9.0\Meli.Products.Infrastructure.pdb
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Infrastructure\obj\Debug\net9.0\ref\Meli.Products.Infrastructure.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Infrastructure\obj\Debug\net9.0\Meli.Products.Infrastructure.sourcelink.json

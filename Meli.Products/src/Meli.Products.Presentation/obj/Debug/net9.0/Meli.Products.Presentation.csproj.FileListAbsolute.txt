@@ -46,3 +46,4 @@ C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Presentation\obj\Debug\
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Presentation\obj\Debug\net9.0\Meli.Products.Presentation.pdb
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Presentation\obj\Debug\net9.0\Meli.Products.Presentation.genruntimeconfig.cache
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Presentation\obj\Debug\net9.0\ref\Meli.Products.Presentation.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Presentation\obj\Debug\net9.0\Meli.Products.Presentation.sourcelink.json

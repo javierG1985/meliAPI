@@ -109,3 +109,4 @@ C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Test\obj\Debug\net9.0\r
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Test\obj\Debug\net9.0\Meli.Products.Test.pdb
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Test\obj\Debug\net9.0\Meli.Products.Test.genruntimeconfig.cache
 C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Test\obj\Debug\net9.0\ref\Meli.Products.Test.dll
+C:\javier\entrevistaMELI\Meli.Products\src\Meli.Products.Test\obj\Debug\net9.0\Meli.Products.Test.sourcelink.json

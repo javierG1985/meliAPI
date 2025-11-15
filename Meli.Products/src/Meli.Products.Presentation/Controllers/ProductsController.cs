@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Meli.Products.Application.DTOs;
 using Meli.Products.Application.UseCases;
 using Meli.Products.Domain.Entities;
@@ -17,6 +18,7 @@ namespace Meli.Products.Presentation.Controllers
         private readonly UpdateProductUseCase _updateProductUseCase;
         private readonly DeleteProductUseCase _deleteProductUseCase;
         private readonly IMapper _mapper;
+        private readonly ILogger<ProductsController> _logger;
 
         public ProductsController(
             IMapper mapper,
@@ -24,7 +26,8 @@ namespace Meli.Products.Presentation.Controllers
             GetProductByIdUseCase getProductByIdUseCase,
             AddProductUseCase addProductUseCase,
             UpdateProductUseCase updateProductUseCase,
-            DeleteProductUseCase deleteProductUseCase
+            DeleteProductUseCase deleteProductUseCase,
+            ILogger<ProductsController> logger
         )
         {
             _mapper = mapper;
@@ -33,52 +36,95 @@ namespace Meli.Products.Presentation.Controllers
             _addProductUseCase = addProductUseCase;
             _updateProductUseCase = updateProductUseCase;
             _deleteProductUseCase = deleteProductUseCase;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ProductDto>> Get()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> Get()
         {
-            var products = await _getProductsUseCase.ExecuteAsync();
-            return _mapper.Map<IEnumerable<ProductDto>>(products);
+            try
+            {
+                // Obtiene products y los mapea a DTOs
+                var products = await _getProductsUseCase.ExecuteAsync();
+                var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+                return Ok(productDtos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving products");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data");
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> Get(int id)
         {
-            var product = await _getProductByIdUseCase.ExecuteAsync(id);
-            if (product == null)
+            try
             {
-                return NotFound();
+                var product = await _getProductByIdUseCase.ExecuteAsync(id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+                return _mapper.Map<ProductDto>(product);
             }
-            return _mapper.Map<ProductDto>(product);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving product with id {Id}", id);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data");
+            }
         }
 
         [HttpPost]
         public async Task<ActionResult<ProductDto>> Post(ProductDto productDto)
         {
-            var product = _mapper.Map<Product>(productDto);
-            await _addProductUseCase.ExecuteAsync(product);
-            return CreatedAtAction(nameof(Get), new { id = product.Id }, _mapper.Map<ProductDto>(product));
+            try
+            {
+                var product = _mapper.Map<Product>(productDto);
+                await _addProductUseCase.ExecuteAsync(product);
+                return CreatedAtAction(nameof(Get), new { id = product.Id }, _mapper.Map<ProductDto>(product));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating product");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating data");
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, ProductDto productDto)
         {
-            if (id != productDto.Id)
+            try
             {
-                return BadRequest();
-            }
+                if (id != productDto.Id)
+                {
+                    return BadRequest();
+                }
 
-            var product = _mapper.Map<Product>(productDto);
-            await _updateProductUseCase.ExecuteAsync(product);
-            return NoContent();
+                var product = _mapper.Map<Product>(productDto);
+                await _updateProductUseCase.ExecuteAsync(product);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating product with id {Id}", id);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _deleteProductUseCase.ExecuteAsync(id);
-            return NoContent();
+            try
+            {
+                await _deleteProductUseCase.ExecuteAsync(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting product with id {Id}", id);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+            }
         }
     }
 }
