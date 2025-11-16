@@ -87,9 +87,17 @@ namespace Meli.Products.Presentation.Controllers
         {
             try
             {
-                var product = _mapper.Map<Product>(productDto);
-                await _addProductUseCase.ExecuteAsync(product);
-                return CreatedAtAction(nameof(Get), new { id = product.Id }, _mapper.Map<ProductDto>(product));
+                var validator = new Application.Validators.ProductValidator().Validate(productDto);
+                if (!validator.IsValid) { 
+                    return BadRequest(validator.Errors);
+                }
+                else
+                {
+                    var product = _mapper.Map<Product>(productDto);
+                    await _addProductUseCase.ExecuteAsync(product);
+                    return CreatedAtAction(nameof(Get), new { id = product.Id }, _mapper.Map<ProductDto>(product));
+
+                }
             }
             catch (Exception ex)
             {
