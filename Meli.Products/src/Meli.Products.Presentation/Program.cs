@@ -22,12 +22,6 @@ builder.Services.AddScoped<UpdateProductUseCase>();
 builder.Services.AddScoped<DeleteProductUseCase>();
 
 builder.Services.AddAutoMapper(typeof(ProductMappingProfile).Assembly);
-// OpenAPI/Swagger
-builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Meli.Products API", Version = "v1" });
-});
 
 // Configurar JWT
 builder.Services.AddAuthentication("Bearer")
@@ -57,18 +51,55 @@ builder.Services.AddSingleton<ITokenService>(provider =>
     );
 });
 builder.Services.AddControllers();
+
+// Configurar Swagger
+builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Mi API PRODUCTS .NET 9",
+        Version = "v1"
+    });
+
+    // Configurar JWT en Swagger
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header usando el esquema Bearer. Ejemplo: \"Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
+
+app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+  {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Meli.Products API v1");
         c.RoutePrefix = string.Empty;
-    });
-}
+  });
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
