@@ -1,4 +1,5 @@
-﻿using Meli.Products.Application.Interfaces;
+﻿using Meli.Products.Application.Exceptions;
+using Meli.Products.Application.Interfaces;
 using Meli.Products.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,12 @@ namespace Meli.Products.Application.UseCases
 
         public Task<Product?> ExecuteAsync(int id)
         {
-            return _productRepository.GetByIdAsync(id);
+            var product = _productRepository.GetByIdAsync(id);
+            if (product == null)
+            {
+                throw ApiException.NotFound($"Producto con ID {id} no encontrado");
+            }
+            return product;
         }
     }
 }

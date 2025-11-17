@@ -36,5 +36,68 @@
       "additionalProp2": "",
       "additionalProp3": ""
     }
+  },
+  {
+    "Id": 4,
+    "Name": "asus",
+    "Price": 200,
+    "Description": "portatil",
+    "Rating": 1,
+    "ImageUrl": "",
+    "Specifications": {
+      "memoria": "1tb",
+      "procesador": "2.4 ghz",
+      "disco duro": "500"
+    }
+  },
+  {
+    "Id": 5,
+    "Name": "asus",
+    "Price": 200,
+    "Description": "portatil",
+    "Rating": 1,
+    "ImageUrl": "",
+    "Specifications": {
+      "memoria": "1tb",
+      "procesador": "2.4 ghz",
+      "disco duro": "500"
+    }
+  },
+  {
+    "Id": 6,
+    "Name": "mesa gamer",
+    "Price": 500,
+    "Description": "",
+    "Rating": 3,
+    "ImageUrl": "",
+    "Specifications": {
+      "ancho": "20cm",
+      "largo": "20cm",
+      "alto": "40cm"
+    }
+  },
+  {
+    "Id": 7,
+    "Name": "prueba",
+    "Price": 1,
+    "Description": "",
+    "Rating": 1,
+    "ImageUrl": "",
+    "Specifications": {
+      "val1": "1",
+      "val2": "1",
+      "val3": "1"
+    }
+  },
+  {
+    "Id": 8,
+    "Name": "dasd",
+    "Price": 2,
+    "Description": "",
+    "Rating": 1,
+    "ImageUrl": "",
+    "Specifications": {
+      "nose": "3"
+    }
   }
 ]

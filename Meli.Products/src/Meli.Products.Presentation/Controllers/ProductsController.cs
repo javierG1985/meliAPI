@@ -1,15 +1,18 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Meli.Products.Application.DTOs;
+using Meli.Products.Application.Validators;
 using Meli.Products.Application.UseCases;
 using Meli.Products.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Meli.Products.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly GetProductsUseCase _getProductsUseCase;
@@ -71,6 +74,7 @@ namespace Meli.Products.Presentation.Controllers
                 {
                     return NotFound();
                 }
+               
                 return _mapper.Map<ProductDto>(product);
             }
             catch (Exception ex)
@@ -83,11 +87,11 @@ namespace Meli.Products.Presentation.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ProductDto>> Post(ProductDto productDto)
+        public async Task<ActionResult<ProductDto>> Post(CreateProductDto productDto)
         {
             try
-            {
-                var validator = new Application.Validators.ProductValidator().Validate(productDto);
+        {
+            var validator = new Meli.Products.Application.Validators.CreateProductValidator().Validate(productDto);
                 if (!validator.IsValid) { 
                     return BadRequest(validator.Errors);
                 }

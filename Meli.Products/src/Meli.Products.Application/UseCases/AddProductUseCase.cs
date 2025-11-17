@@ -1,4 +1,5 @@
-﻿using Meli.Products.Application.Interfaces;
+﻿using Meli.Products.Application.Exceptions;
+using Meli.Products.Application.Interfaces;
 using Meli.Products.Domain.Entities;
 using System;
 using System.Collections.Generic;
