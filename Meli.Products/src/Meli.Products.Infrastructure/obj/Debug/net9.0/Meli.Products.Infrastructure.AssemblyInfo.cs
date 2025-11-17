@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Meli.Products.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8af7bd2a937b2aa00cf65ddec5a08ae1f7c32141")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9949acdd74bfee2e71ffd62af94d4c26b8290f5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Meli.Products.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Meli.Products.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

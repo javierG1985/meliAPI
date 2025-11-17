@@ -363,11 +363,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\javier\\MELI\\meliAPI\\Meli.Products\\src\\Meli.Products.Application\\Meli.Products.Application.csproj",
+      "projectUniqueName": "C:\\javier\\javier\\meliAPI\\Meli.Products\\src\\Meli.Products.Application\\Meli.Products.Application.csproj",
       "projectName": "Meli.Products.Application",
-      "projectPath": "C:\\javier\\MELI\\meliAPI\\Meli.Products\\src\\Meli.Products.Application\\Meli.Products.Application.csproj",
+      "projectPath": "C:\\javier\\javier\\meliAPI\\Meli.Products\\src\\Meli.Products.Application\\Meli.Products.Application.csproj",
       "packagesPath": "C:\\Users\\javie\\.nuget\\packages\\",
-      "outputPath": "C:\\javier\\MELI\\meliAPI\\Meli.Products\\src\\Meli.Products.Application\\obj\\",
+      "outputPath": "C:\\javier\\javier\\meliAPI\\Meli.Products\\src\\Meli.Products.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -389,8 +389,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\javier\\MELI\\meliAPI\\Meli.Products\\src\\Meli.Products.Domain\\Meli.Products.Domain.csproj": {
-              "projectPath": "C:\\javier\\MELI\\meliAPI\\Meli.Products\\src\\Meli.Products.Domain\\Meli.Products.Domain.csproj"
+            "C:\\javier\\javier\\meliAPI\\Meli.Products\\src\\Meli.Products.Domain\\Meli.Products.Domain.csproj": {
+              "projectPath": "C:\\javier\\javier\\meliAPI\\Meli.Products\\src\\Meli.Products.Domain\\Meli.Products.Domain.csproj"
             }
           }
         }
