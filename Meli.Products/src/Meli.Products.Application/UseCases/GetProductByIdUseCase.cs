@@ -18,9 +18,9 @@ namespace Meli.Products.Application.UseCases
             _productRepository = productRepository;
         }
 
-        public Task<Product?> ExecuteAsync(int id)
+        public async Task<Product?> ExecuteAsync(int id)
         {
-            var product = _productRepository.GetByIdAsync(id);
+            var product = await _productRepository.GetByIdAsync(id);
             if (product == null)
             {
                 throw ApiException.NotFound($"Producto con ID {id} no encontrado");

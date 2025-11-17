@@ -1,163 +1,123 @@
-# Meli.Products - README
+## Meli.Products — README
 
-Este documento registra y explica los cambios realizados en el proyecto `Meli.Products` durante la entrevista.
+- Proyecto basado en una arquitectura Onion (Onion Architecture) que implementa principios de arquitectura limpia, promoviendo bajo acoplamiento, separación por responsabilidades y mantenibilidad a largo plazo.
+-Esta API de backend simplificada suministrará detalles de productos para ser usados en una función de comparación de ítems. Los datos de los productos se persistirán en un archivo JSON para simular una base de datos.
 
-## Resumen de cambios realizados
-- Manejo básico de errores y comentarios en `ProductsController`:
-  - Inyección de `ILogger<ProductsController>` para registrar errores.
-  - Envolvimiento de operaciones en try/catch para devolver 500 Internal Server Error en fallos.
-  - Respuestas coherentes y mensajes genéricos de error para evitar exponer detalles.
-  - Comentarios inline explicando la lógica en puntos clave.
-- Pruebas unitarias añadidas:
-  - Pruebas de manejo de errores para `ProductsController` (simulación de fallos del repositorio).
-  - Pruebas de flujos exitosos para `ProductsController` (Get, Get(id), Post, Put, Delete).
-- Colaboración de código:
-  - Se introdujo proyecto de pruebas `Meli.Products.Presentation.Tests` con Moq/xUnit.
-- Actualización de TODO:
-  - Estados marcados como completados para las tareas de errores y pruebas.
+## Arquitectura General
 
-## Ubicaciones relevantes
-- Archivo principal con cambios de controladores:
-  - `Meli.Products/src/Meli.Products.Presentation/Controllers/ProductsController.cs`
-    - Enfoque de Get() que mapea a DTOs:
-      - Fragmento relevante: `return _mapper.Map<IEnumerable<ProductDto>>(products);`
-      - Este comportamiento se mantiene, con el objetivo de garantizar que el flujo de datos al cliente sea consistente con la capa de DTOs.
-- Pruebas:
-  - Pruebas de errores:
-    - `tests/Meli.Products.Presentation.Tests/ProductsControllerTests.cs`
-  - Pruebas de éxito:
-    - `tests/Meli.Products.Presentation.Tests/ProductsControllerSuccessTests.cs`
+ - El sistema se organiza en cuatro capas principales:
+Presentation → Application → Infrastructure
+Application  → Domain
+Infrastructure → Application
+- Tests → Todas las capas (según tipo de pruebas)
 
-## Detalles de código clave
-Ejemplo de Get() (flujo exitoso) para referencia:
-```csharp
-[HttpGet]
-public async Task<ActionResult<IEnumerable<ProductDto>>> Get()
-{
-    try
-    {
-        var products = await _getProductsUseCase.ExecuteAsync();
-        return _mapper.Map<IEnumerable<ProductDto>>(products);
-    }
-    catch (Exception ex)
-    {
-        _logger.LogError(ex, "Error retrieving products");
-        return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data");
-    }
-}
+## Estructura del Proyecto
+```text
+Meli.Products/
+├── src/
+│   ├── Presentation/
+│   │   └── Meli.Products.Presentation/
+│   │       ├── Controllers/
+│   │       └── Program.cs
+│   │
+│   ├── Meli.Products.Application/
+│   │   ├── UseCases/
+│   │   ├── DTOs/
+│   │   ├── Interfaces/
+│   │   ├── Exceptions/
+│   │   ├── Validators/
+│   │   └── Mappings/
+│   │
+│   ├── Domain/
+│   │   └── Entities/
+│   │
+│   └── Infrastructure/
+│       ├── Persistence/
+│       │   └── Repositories/
+│       └── Security/
+└── tests/
+    └── Meli.Products.Presentation.Tests/
+        ├── ProductsControllerTests.cs
+        └── ProductsControllerSuccessTests.cs
 ```
 
-## Cómo ejecutar las pruebas
-- Abrir una terminal en la raíz del repositorio.
-- Ejecutar:
-  - `dotnet test`
+## Paquetes NuGet Utilizados
+-El proyecto utiliza los siguientes paquetes NuGet:
 
-## Notas técnicas
-- Se mantiene la firma de los endpoints y se añaden pruebas para escenarios de error y de éxito.
-- Los tests usan Moq para simular `IProductRepository` y AutoMapper para DTOs.
-- Pruebas adicionales añadidas:
-  - GetById not-found (retorna 404) cuando no existe el recurso.
-  - GetById éxito (retorna 200 OK con DTO).
-  - Delete éxito (retorna 204 No Content).
+--FluentValidation — Validación de modelos y reglas de negocio.
+--AutoMapper — Mapeo entre entidades y DTOs.
+--JWT (System.IdentityModel.Tokens.Jwt) — Implementación de autenticación basada en tokens.
+--Swagger / Swashbuckle.AspNetCore — Documentación interactiva de la API.
 
-## Visión general del proyecto (en español)
+## Resumen de Funcionalidades
+-Presentación (Meli.Products.Presentation)
+--AuthController: Implanta autenticación mediante JWT para proteger los endpoints.
+--ProductsController: Implementa GET, GET/{id}, POST, PUT y DELETE.
+--Gestiona productos almacenados en un archivo JSON.
+--Utiliza FluentValidation para validar las solicitudes antes del procesamiento.
+--Uso de AutoMapper para transformar entidades a DTOs.
+--Manejo robusto de errores mediante:
+  ILogger<ProductsController>
+  try/catch con respuestas adecuadas
+  Middleware global para excepciones no controladas.
 
-Este proyecto gestiona productos mediante una API REST basada en una arquitectura en capas: Presentación, Aplicación, Dominio e Infraestructura.
+| Método | Ruta                 | Descripción                     |
+| ------ | -------------------- | ------------------------------- |
+| GET    | `/api/Products`      | Lista todos los productos       |
+| GET    | `/api/Products/{id}` | Obtiene un producto por ID      |
+| POST   | `/api/Products`      | Crea un nuevo producto          |
+| PUT    | `/api/Products/{id}` | Actualiza un producto existente |
+| DELETE | `/api/Products/{id}` | Elimina un producto existente   |
 
-### Arquitectura y responsabilidades
-- Presentación: `Meli.Products.Presentation` (Controllers).
-- Aplicación: UseCases; `IProductRepository` como abstracción de acceso a datos.
-- Dominio: Entidades (p. ej., `Product`).
-- Infraestructura: Repositorio de persistencia (p. ej., `ProductRepository`).
-- Mapeo: `ProductDto` para DTOs y `ProductMappingProfile` para AutoMapper.
-- Pruebas: pruebas unitarias para errores y para flujos exitosos; pruebas de not-found para GetById, PUT y DELETE.
 
-### Endpoints RESTful de la API (resumen)
-- GET `api/Products` — lista de productos.
-- GET `api/Products/{id}` — producto por ID (NotFound si no existe).
-- POST `api/Products` — crea un nuevo producto.
-- PUT `api/Products/{id}` — actualiza un producto (verificación de existencia previa).
-- DELETE `api/Products/{id}` — elimina un producto (verificación de existencia previa).
+## Códigos de respuesta relevantes
 
-### Pruebas unitarias (en español)
-- Cobertura:
-  - Errores en cada endpoint (Get, GetById, Post, Put, Delete).
-  - Flujos exitosos (Get, GetById, Post, Put, Delete).
-  - Not-found para GetById, PUT y DELETE.
-- Herramientas: XUnit, Moq, AutoMapper.
-- Estructura de pruebas:
-  - `tests/Meli.Products.Presentation.Tests/ProductsControllerTests.cs` (errores y not-found)
-  - `tests/Meli.Products.Presentation.Tests/ProductsControllerSuccessTests.cs` (éxitos)
+-200 OK
+-201 Created (incluyendo header Location)
+-204 No Content
+-404 Not Found
+-500 Internal Server Error
 
-### Cómo ejecutar las pruebas
-- Abre una terminal en la raíz del repositorio.
-- Ejecuta: `dotnet test`
+##Cómo Ejecutar el Proyecto
+1. Requisitos previos
+-.NET SDK 9.0 o superior
+-Editor recomendado: Visual Studio / VS Code
+2. Restaurar dependencias
+-dotnet restore
+3. Construir la solución
+-dotnet build
+4. Ejecutar la API
+-dotnet run --project src/Meli.Products.Presentation
+5. Abrir Swagger UI
 
-## Notas finales
-- La API sigue principios RESTful y utiliza un modelo por capas para facilitar el mantenimiento.
-- Si deseas, puedo ampliar la documentación con ejemplos de respuestas HTTP detalladas para cada caso.
-- Pruebas adicionales añadidas:
-  - GetById not-found (retorna 404) cuando no existe el recurso.
-  - GetById éxito (retorna 200 OK con DTO).
-  - Delete éxito (retorna 204 No Content).
+Una vez ejecutado, ingresa a:
+http://localhost:5000/swagger  (el puerto puede variar)
 
-## Ejemplos de respuestas HTTP (RESTful)
 
-- GET api/Products — 200 OK
-  - Cuerpo de ejemplo:
-  ```json
-  [
-    {"id":1,"name":"Producto A","price":9.99,"description":"Descripcion","rating":4.5,"imageUrl":"","specifications":{}}
-  ]
-  ```
-- GET api/Products/{id} — 200 OK
-  - Cuerpo de ejemplo:
-  ```json
-  {"id":1,"name":"Producto A","price":9.99,"description":"Descripcion","rating":4.5,"imageUrl":"","specifications":{}}
-  ```
-- GET api/Products/{id} — 404 Not Found
-  - Sin cuerpo (o vacío).
-- POST api/Products — 201 Created
-  - Cuerpo de ejemplo:
-  ```json
-  {"id":2,"name":"Producto B","price":19.99,"description":"Descripcion","rating":4.0,"imageUrl":"","specifications":{}}
-  ```
-  - Encabezado Location: /api/Products/2
-- PUT api/Products/{id} — 204 No Content (caso exitoso)
-- PUT api/Products/{id} — 404 Not Found (si no existe antes de actualizar)
-- DELETE api/Products/{id} — 204 No Content (caso exitoso)
-- DELETE api/Products/{id} — 404 Not Found (si no existe)
+##Pruebas Unitarias
+El proyecto incluye pruebas para flujos exitosos, fallos y escenarios not-found.
 
-## Estado de TODO (actualizado)
-- Add basic error handling and inline comments to `ProductsController` — COMPLETED
-- Write unit tests for error handling in `ProductsController` — COMPLETED
-- Add unit tests for successful controller flows in `ProductsController` — COMPLETED
-- Document changes in README.md for `ProductsController` and tests — COMPLETED
- 
-### Ejemplos de peticiones HTTP con curl
+-Tecnologías usadas:
+--xUnit
+--Moq
+--AutoMapper
 
-- GET all: 
-```bash
-curl -sS -X GET "https://localhost:5001/api/Products" -H "Accept: application/json"
-```
-- GET by id (ej. 1):
-```bash
-curl -sS -X GET "https://localhost:5001/api/Products/1" -H "Accept: application/json"
-```
-- POST (crear):
-```bash
-curl -sS -X POST "https://localhost:5001/api/Products" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Producto Nuevo","price":9.99,"description":"Descripcion","rating":4.5,"imageUrl":"","specifications":{}}'
-```
-- PUT (actualizar):
-```bash
-curl -sS -X PUT "https://localhost:5001/api/Products/1" \
-  -H "Content-Type: application/json" \
-  -d '{"id":1,"name":"Producto Actualizado","price":19.99,"description":"Descripcion actualizada","rating":4.6,"imageUrl":"","specifications":{}}'
-```
-- DELETE (eliminar) 1:
-```bash
-curl -sS -X DELETE "https://localhost:5001/api/Products/1"
-```
+tests/
+└── Meli.Products.Presentation.Tests/
+    ├── ProductsControllerTests.cs          (errores y not-found)
+    └── ProductsControllerSuccessTests.cs   (éxitos)
 
+-Ejecutar pruebas
+dotnet test
+
+## Notas Técnicas
+
+-Se respetan las firmas originales de los endpoints.
+-AutoMapper maneja la conversión entre entidades y DTOs.
+-FluentValidation valida las solicitudes antes de llegar al caso de uso.
+-El middleware global garantiza respuestas consistentes para errores inesperados.
+-La autenticación JWT protege los endpoints de productos.
+
+##Notas Finales
+
+La API está diseñada siguiendo principios RESTful, arquitectura limpia y buenas prácticas para garantizar extensibilidad, testabilidad y mantenibilidad.

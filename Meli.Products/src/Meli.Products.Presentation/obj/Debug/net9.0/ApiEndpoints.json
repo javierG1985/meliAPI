@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Meli.Products.Presentation.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Meli.Products.Application.DTOs.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Meli.Products.Presentation.Controllers.ProductsController",
     "Method": "Get",
     "RelativePath": "api/Products",
@@ -34,7 +50,7 @@
     "Parameters": [
       {
         "Name": "productDto",
-        "Type": "Meli.Products.Application.DTOs.ProductDto",
+        "Type": "Meli.Products.Application.DTOs.CreateProductDto",
         "IsRequired": true
       }
     ],

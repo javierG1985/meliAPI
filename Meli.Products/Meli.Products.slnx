@@ -4,6 +4,8 @@
     <Project Path="src/Meli.Products.Domain/Meli.Products.Domain.csproj" />
     <Project Path="src/Meli.Products.Infrastructure/Meli.Products.Infrastructure.csproj" />
     <Project Path="src/Meli.Products.Presentation/Meli.Products.Presentation.csproj" />
-    <Project Path="src/Meli.Products.Test/Meli.Products.Test.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Meli.Products.test/Meli.Products.test.csproj" Id="c4d39c51-21c5-4840-9a45-6ed411c8adec" />
   </Folder>
 </Solution>

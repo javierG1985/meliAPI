@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Meli.Products.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8af7bd2a937b2aa00cf65ddec5a08ae1f7c32141")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31cc3c86080ca11b9f6afd2de7f3d8338f32ccff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Meli.Products.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Meli.Products.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
